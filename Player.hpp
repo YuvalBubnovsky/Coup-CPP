@@ -27,5 +27,7 @@ namespace coup{
             bool income();
             bool foreign_aid();
             bool coup(Player);
+            int get_coins();
+            string get_role();
     };
 }

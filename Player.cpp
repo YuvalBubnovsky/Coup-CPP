@@ -12,4 +12,10 @@ namespace coup{
     bool Player::coup(Player){
         return false;
     }
+    int Player::get_coins(){
+        return 0;
+    }
+    string Player::get_role(){
+        return this->role;
+    }
 }
