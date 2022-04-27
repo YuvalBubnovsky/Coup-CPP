@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Player.hpp"
 
-
 namespace coup{
     bool Player::income(){
         return false;
@@ -12,10 +11,10 @@ namespace coup{
     bool Player::coup(Player){
         return false;
     }
-    int Player::get_coins(){
-        return 0;
+    std::string Player::role(){
+        return "a";
     }
-    string Player::get_role(){
-        return this->role;
+    int Player::coins(){
+        return 0;
     }
 }

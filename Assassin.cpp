@@ -3,14 +3,11 @@
 #include "Player.hpp"
 
 namespace coup{
-    
-    Assassin::Assassin(Game game, string name){
+    Assassin::Assassin(Game game, std::string name){
         this->name = name;
         this->game = game;
-        this->coins = 0;
-        this->role = "Assassin";
+        this->coins_count = 0;
+        this->player_role = "Assassin";
     }
-    bool Assassin::coup(Player player){
-        return false;
-    }
+    bool Assassin::coup(Player player){ return false; }
 }

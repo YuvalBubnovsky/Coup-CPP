@@ -6,11 +6,9 @@
 #include "Player.hpp"
 
 namespace coup{
-
     class Assassin: public Player{
-
         public:
-            Assassin(Game game, string name);
+            Assassin(Game game, std::string name);
             bool coup(Player player);
     };
 }

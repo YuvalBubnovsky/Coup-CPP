@@ -4,27 +4,20 @@
     - winner
 */
 
-#pragma once
 #include <iostream>
 #include <vector>
-#include "Player.hpp"
-
-using std::string;
-using std::vector;
+#pragma once
 
 namespace coup{
-
     class Game{
-
         private:
-            vector<Player> player_list1;
-            vector<string> player_list;
+            std::vector<std::string> players_list;
+            int player_turn;
             bool active;
-
+            std::vector<std::string> last_act;
         public:
-            bool start_game();
-            string turn();
-            string winner();
-            vector<string> get_list();
+            std::string turn();
+            std::vector<std::string> players();
+            std::string winner();
     };
 }

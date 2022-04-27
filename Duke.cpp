@@ -3,17 +3,12 @@
 #include "Player.hpp"
 
 namespace coup{
-    
-    Duke::Duke(Game game, string name){
+    Duke::Duke(Game game, std::string name){
         this->name = name;
         this->game = game;
-        this->coins = 0;
-        this->role = "Duke";
+        this->coins_count = 0;
+        this->player_role = "Duke";
     }
-    bool Duke::tax(){
-        return false;
-    }
-    bool Duke::block(Player player){
-        return false;
-    }
+    bool Duke::tax(){ return false;}
+    bool Duke::block(Player player){ return false; }
 }

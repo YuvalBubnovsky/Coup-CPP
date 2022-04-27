@@ -3,18 +3,14 @@
 #include "Game.hpp"
 
 namespace coup{
-
-    bool Game::start_game(){
-        return false;
+    std::string Game::turn(){
+        return "a";
     }
-    string Game::turn(){
-        return " ";
+    std::vector<std::string> Game::players(){
+        return this->players_list;
     }
-    vector<string> Game::get_list(){
-        return this->player_list;
-    }
-    string Game::winner(){
-        return "Yuval";
+    std::string Game::winner(){
+        return "a";
     }
 
 }
