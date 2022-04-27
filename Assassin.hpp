@@ -3,12 +3,17 @@
 */
 
 #include <iostream>
+#include <string>
 #include "Player.hpp"
 
-namespace coup{
-    class Assassin: public Player{
-        public:
-            Assassin(Game game, std::string name);
-            bool coup(Player player);
+using std::string;
+
+namespace coup
+{
+    class Assassin : public Player
+    {
+    public:
+        Assassin(Game game, string name);
+        bool coup(Player player);
     };
 }

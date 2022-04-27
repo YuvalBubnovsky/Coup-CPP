@@ -1,14 +1,15 @@
-#include <iostream>
+
 #include "Duke.hpp"
 #include "Player.hpp"
 
-namespace coup{
-    Duke::Duke(Game game, std::string name){
+namespace coup
+{
+    Duke::Duke(Game game, string name)
+    {
         this->name = name;
         this->game = game;
-        this->coins_count = 0;
-        this->player_role = "Duke";
+        this->coins_num = 0;
     }
-    bool Duke::tax(){ return false;}
-    bool Duke::block(Player player){ return false; }
+    bool Duke::tax() { return false; }
+    bool Duke::block(Player player) { return false; }
 }

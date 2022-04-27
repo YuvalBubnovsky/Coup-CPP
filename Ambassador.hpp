@@ -3,13 +3,18 @@
 */
 
 #include <iostream>
+#include <string>
 #include "Player.hpp"
 
-namespace coup{
-    class Ambassador: public Player{
-        public:
-            Ambassador(Game game, std::string name);
-            bool transfer(Player from_player, Player to_player);
-            bool block(Player player);
+using std::string;
+
+namespace coup
+{
+    class Ambassador : public Player
+    {
+    public:
+        Ambassador(Game game, string name);
+        bool transfer(Player src, Player dest);
+        bool block(Player player);
     };
 }

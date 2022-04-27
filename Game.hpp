@@ -6,18 +6,23 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 #pragma once
 
-namespace coup{
-    class Game{
-        private:
-            std::vector<std::string> players_list;
-            int player_turn;
-            bool active;
-            std::vector<std::string> last_act;
-        public:
-            std::string turn();
-            std::vector<std::string> players();
-            std::string winner();
+using std::string;
+using std::vector;
+
+namespace coup
+{
+    class Game
+    {
+    private:
+        vector<string> players_list;
+        vector<string> last_action;
+
+    public:
+        string turn();
+        vector<string> players();
+        string winner();
     };
 }

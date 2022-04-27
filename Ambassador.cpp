@@ -1,14 +1,15 @@
-#include <iostream>
 #include "Ambassador.hpp"
 #include "Player.hpp"
 
-namespace coup{
-    Ambassador::Ambassador(Game game, std::string name){
+namespace coup
+{
+    Ambassador::Ambassador(Game game, string name)
+    {
         this->name = name;
         this->game = game;
-        this->coins_count = 0;
-        this->player_role = "Ambassador";
+        this->coins_num = 0;
     }
-    bool Ambassador::transfer(Player from_player, Player to_player){ return false;}
-    bool Ambassador::block(Player player){ return false;}
+    
+    bool Ambassador::transfer(Player src, Player dest) { return false; }
+    bool Ambassador::block(Player player) { return false; }
 }

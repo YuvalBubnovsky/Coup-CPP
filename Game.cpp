@@ -1,16 +1,18 @@
-#include <iostream>
-#include <vector>
 #include "Game.hpp"
 
-namespace coup{
-    std::string Game::turn(){
-        return "a";
+namespace coup
+{
+    std::string Game::turn()
+    {
+        return " ";
     }
-    std::vector<std::string> Game::players(){
+    vector<string> Game::players()
+    {
         return this->players_list;
     }
-    std::string Game::winner(){
-        return "a";
+    string Game::winner()
+    {
+        return " ";
     }
 
 }
