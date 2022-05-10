@@ -4,8 +4,8 @@
 #include "Game.hpp"
 
 using std::string;
-using std::vector;
 using std::to_string;
+using std::vector;
 
 #define MAX_PLAYERS 6
 #define MAX_COINS 10
@@ -19,15 +19,15 @@ namespace coup
     protected:
         Game *game;
         string name;
-        string _role;
-        vector<string> last_action;
-        int coins_num;
-        bool is_alive;
-        size_t id;
+        int id;
 
     public:
         Player(Game *game, string name, string role);
         ~Player();
+        int coins_num;
+        bool is_alive;
+        string _role;
+        vector<string> last_action;
         bool income();
         bool foreign_aid();
         virtual bool coup(Player &target);
@@ -37,8 +37,8 @@ namespace coup
         bool set_life(bool status);
         bool get_life();
         string get_name();
-        bool set_id(int id);
-        size_t get_id();
+        bool set_id(size_t id);
+        int get_id();
         vector<string> get_action();
     };
 }

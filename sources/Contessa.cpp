@@ -3,11 +3,21 @@
 
 namespace coup
 {
-    Contessa::Contessa(Game game, string name)
+    bool Contessa::block(Player &player)
     {
-        this->name = name;
-        this->game = game;
-        this->coins_num = 0;
+        if (player.role() != "Assassin" || player.get_action().at(0) != "specialcoup")
+        {
+            throw "Illegal Block!";
+        }
+        if (player.get_action().at(0) == "specialcoup")
+        { // We can only block special assasin coup
+            string target_string = player.get_action().at(1);
+            int target_id = stoi(target_string);
+            Player *target = this->game->get_player((size_t)target_id);
+            target->is_alive = true;
+            //this->game->players();
+            return 1;
+        }
+        return 0;
     }
-    bool Contessa::block(Player player) { return false; }
 }

@@ -14,11 +14,11 @@ namespace coup
 
     Game::~Game() {}
 
-
     bool Game::add_player(Player *player)
     {
         this->players_list.push_back(player->get_name());
-        this->player_count = players_list.size();
+        this->players_obj_list.push_back(player);
+        this->set_player_count(players_list.size());
         int num = this->get_sequence();
         this->set_sequence(num++);
         return 1;
@@ -26,11 +26,24 @@ namespace coup
 
     bool Game::remove_player(Player *player)
     {
-        player->set_life(false);
+        player->is_alive = false;
         // TODO: fix/update player removal
-       // this->players_list.erase(this->players_list.begin(),this->players_list.begin()+(player->get_id()%this->players_list.size()));
-        this->player_count=this->players_list.size();
+        // this->players_list.erase(this->players_list.begin(),this->players_list.begin()+(player->get_id()%this->players_list.size()));
+       // this->players_list = this->players();
+      //  this->set_player_count(players_list.size());
         return 1;
+    }
+
+    Player *Game::get_player(size_t _id)
+    {
+        for (Player *player : this->players_obj_list)
+        {
+            if (player->get_id() == _id)
+            {
+                return player;
+            }
+        }
+        return NULL;
     }
 
     bool Game::set_sequence(int num)
@@ -44,22 +57,57 @@ namespace coup
         return this->sequence;
     }
 
+    bool Game::set_player_count(int _count)
+    {
+        this->player_count = _count;
+        return 1;
+    }
+
+    int Game::get_player_count()
+    {
+        return this->player_count;
+    }
     string Game::turn()
     {
-        return this->players_list.at(this->_turn%this->player_count);
+        size_t player_at = (size_t)(this->_turn % (int)this->players_obj_list.size());
+        while (true)
+        {
+            if (this->players_obj_list.at(player_at)->get_life() == true)
+            {
+
+                return this->players_obj_list.at(player_at)->get_name();
+            }
+
+            _turn++; /*skip dead people*/
+            player_at = (size_t)(this->_turn % (int)players_obj_list.size());
+        }
+       // return this->players_obj_list.at(static_cast<size_t>(this->_turn) % static_cast<size_t>(this->get_player_count()))->get_name();
     }
     vector<string> Game::players()
     {
-        return this->players_list;
+        vector<string> updated_list;
+        for (Player *player : this->players_obj_list)
+        {
+            if (player->get_life())
+            {
+                updated_list.push_back(player->get_name());
+            }
+        }
+        return updated_list;
     }
     string Game::winner()
     {
-        if(this->game_on==false){
+        this->players_list = players();
+        if (this->game_on == false)
+        {
             throw "Game Hasn't Started Yet!";
         }
-        if(this->player_count!=1){
+        if (this->players_list.size() != 1)
+        {
             throw "Game Didn't Finish Yet!";
-        } else{
+        }
+        else
+        {
             return this->players_list.at(0);
         }
     }

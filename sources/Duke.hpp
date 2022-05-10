@@ -1,7 +1,3 @@
-/* Inherits from Player.hpp but also implements:
-    - tax
-*/
-
 #include <iostream>
 #include <string>
 #include "Player.hpp"
@@ -12,9 +8,10 @@ namespace coup
 {
     class Duke : public Player
     {
+
     public:
-        Duke(Game game, string name);
+        Duke(Game& game, string name) : Player(&game, name, "Duke"){};
         bool tax();
-        bool block(Player player);
+        bool block(Player& player);
     };
 }
