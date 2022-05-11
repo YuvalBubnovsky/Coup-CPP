@@ -7,7 +7,7 @@ namespace coup
     {
         if (player.role() != "Captain" || player.last_action.at(0) != "steal")
         {
-            throw "Illegal Block!";
+            throw logic_error("Illegal Block!");
         }
       // TODO:  Player* target = this->game->get_player(static_cast<size_t>(stoi(this->last_action.at(2))));
         int coins_stolen = stoi(this->last_action.at(1));
@@ -56,7 +56,7 @@ namespace coup
             this->game->_turn++;
             return true;
 
-        case 2:
+        default:
             this->last_action.clear();
             this->last_action.push_back("steal");
             this->last_action.push_back("2");
@@ -64,9 +64,6 @@ namespace coup
             this->coins_num+=2;
             player.coins_num-=2;
             this->game->_turn++;
-            return true;
-        
-        default:
             return true;
         }
     }

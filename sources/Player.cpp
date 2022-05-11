@@ -130,8 +130,8 @@ namespace coup
         }
         this->coins_num -= COUP_COINS;
         target.is_alive=false;
-        this->get_action().push_back("coup");
-        this->get_action().push_back(to_string(this->get_id())); // TODO: is this needed?
+        this->last_action.push_back("coup");
+        this->last_action.push_back(to_string(this->get_id())); // TODO: is this needed?
         this->game->_turn++;
         return true;
     }
