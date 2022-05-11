@@ -20,6 +20,8 @@ namespace coup
         if (this->coins() >= COUP_COINS)
         {
             Player::coup(target);
+            this->last_action.clear();
+            this->last_action.push_back("coup");
             return true;
         }
         this->coins_num -= A_COUP_COST;
