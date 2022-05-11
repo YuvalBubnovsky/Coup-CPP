@@ -6,6 +6,7 @@
 using std::string;
 using std::to_string;
 using std::vector;
+using std::logic_error;
 
 #define MAX_PLAYERS 6
 #define MAX_COINS 10

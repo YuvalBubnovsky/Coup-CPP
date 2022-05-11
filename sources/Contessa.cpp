@@ -7,7 +7,7 @@ namespace coup
     {
         if (player.role() != "Assassin" || player.get_action().at(0) != "specialcoup")
         {
-            throw "Illegal Block!";
+            throw logic_error("Illegal Block!");
         }
         if (player.get_action().at(0) == "specialcoup")
         { // We can only block special assasin coup

@@ -6,6 +6,8 @@ namespace coup
 
     Game::Game()
     {
+        this->players_obj_list.clear();
+        this->players_list.clear();
         this->game_on = false;
         this->player_count = 0;
         this->_turn = 0;

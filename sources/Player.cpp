@@ -8,11 +8,11 @@ namespace coup
     {
         if (game->game_on)
         {
-            throw "Can't Join, Game Already Started!";
+            throw logic_error("Can't Join, Game Already Started!");
         }
         if (game->players().size() == MAX_PLAYERS)
         {
-            throw "Can't Join, Max Players Reached!";
+            throw logic_error("Can't Join, Max Players Reached!");
         }
         this->name = move(name);
         this->_role = move(role);
@@ -69,15 +69,15 @@ namespace coup
     {
         if (this->coins() >= MAX_COINS)
         {
-            throw "Already Over Maximum Number Of Coins!";
+            throw logic_error("Already Over Maximum Number Of Coins!");
         }
         if (this->game->turn() != this->name)
         {
-            throw "This is not your turn!";
+            throw logic_error("This is not your turn!");
         }
         if (!this->game->game_on && this->game->player_count == 1)
         {
-            throw "One Player Left";
+            throw logic_error("One Player Left");
         }
         if (!this->game->game_on)
         {
@@ -93,15 +93,15 @@ namespace coup
     {
         if (this->coins() >= MAX_COINS)
         {
-            throw "Already Over Maximum Number Of Coins!";
+            throw logic_error("Already Over Maximum Number Of Coins!");
         }
         if (this->game->turn() != this->name)
         {
-            throw "This is not your turn!";
+            throw logic_error("This is not your turn!");
         }
         if (!this->game->game_on && this->game->player_count == 1)
         {
-            throw "One Player Left";
+            throw logic_error("One Player Left");
         }
         if (!this->game->game_on)
         {
@@ -118,15 +118,15 @@ namespace coup
     {
         if (this->game->turn() != this->name)
         {
-            throw "This is not your turn!";
+            throw logic_error("This is not your turn!");
         }
         if (this->coins() < COUP_COINS)
         {
-            throw "Not Enough Coins For Coup!";
+            throw logic_error("Not Enough Coins For Coup!");
         }
         if (!target.get_life())
         {
-            throw "Target Is Already Dead!";
+            throw logic_error("Target Is Already Dead!");
         }
         this->coins_num -= COUP_COINS;
         target.is_alive=false;
