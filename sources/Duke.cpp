@@ -30,9 +30,9 @@ namespace coup
     }
     bool Duke::block(Player &player)
     {
-        if (player.get_action().at(0) != "foreign aid" && player.get_action().at(0) != "specialcoup") // TODO: hard coded fix, can cause trouble
+        if (player.last_action.at(0) != "foreign aid")
         {
-            throw "Illegal Block!";
+            throw logic_error("Illegal Block!");
         }
       //  int curr_coins = player.coins();
         player.coins_num -= 2;

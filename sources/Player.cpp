@@ -84,8 +84,8 @@ namespace coup
             this->game->game_on = true;
         }
         this->coins_num++;
-        this->get_action().clear();
-        this->get_action().push_back("income");
+        this->last_action.clear();
+        this->last_action.push_back("income");
         this->game->_turn++;
         return true;
     }
@@ -108,8 +108,8 @@ namespace coup
             this->game->game_on = true;
         }
         this->coins_num += 2;
-        this->get_action().clear();
-        this->get_action().push_back("foreign aid");
+        this->last_action.clear();
+        this->last_action.push_back("foreign aid");
         this->game->_turn++;
 
         return true;
