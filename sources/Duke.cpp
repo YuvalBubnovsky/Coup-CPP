@@ -14,20 +14,19 @@ namespace coup
         {
             throw "This is not your turn!";
         }
-        if (this->game->game_on == false && this->game->player_count == 1)
+        if (!this->game->game_on && this->game->player_count == 1)
         {
             throw "One Player Left";
         }
-        if (this->game->game_on == false)
+        if (!this->game->game_on)
         {
             this->game->game_on = true;
         }
-        int curr_coins = this->coins();
         this->coins_num += 3;
         this->last_action.clear();
         this->last_action.push_back("tax");
         this->game->_turn++;
-        return 1;
+        return true;
     }
     bool Duke::block(Player &player)
     {
@@ -35,8 +34,8 @@ namespace coup
         {
             throw "Illegal Block!";
         }
-        int curr_coins = player.coins();
+      //  int curr_coins = player.coins();
         player.coins_num -= 2;
-        return 1;
+        return true;
     }
 }

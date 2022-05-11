@@ -12,6 +12,6 @@ namespace coup
     public:
         Duke(Game& game, string name) : Player(&game, name, "Duke"){};
         bool tax();
-        bool block(Player& player);
+        static bool block(Player& player);
     };
 }

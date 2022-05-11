@@ -21,18 +21,18 @@ namespace coup
         this->set_player_count(players_list.size());
         int num = this->get_sequence();
         this->set_sequence(num++);
-        return 1;
+        return true;
     }
 
-    bool Game::remove_player(Player *player)
+   /* bool Game::remove_player(Player *player)
     {
         player->is_alive = false;
         // TODO: fix/update player removal
         // this->players_list.erase(this->players_list.begin(),this->players_list.begin()+(player->get_id()%this->players_list.size()));
        // this->players_list = this->players();
       //  this->set_player_count(players_list.size());
-        return 1;
-    }
+        return true;
+    }*/
 
     Player *Game::get_player(size_t _id)
     {
@@ -46,13 +46,18 @@ namespace coup
         return NULL;
     }
 
+   /* bool Game::revive_player(Player* player){
+        player->is_alive=true;
+        return true;
+    }*/
+
     bool Game::set_sequence(int num)
     {
         this->sequence = num;
-        return 1;
+        return true;
     }
 
-    int Game::get_sequence()
+    int Game::get_sequence() const
     {
         return this->sequence;
     }
@@ -60,10 +65,10 @@ namespace coup
     bool Game::set_player_count(int _count)
     {
         this->player_count = _count;
-        return 1;
+        return true;
     }
 
-    int Game::get_player_count()
+    int Game::get_player_count() const
     {
         return this->player_count;
     }
@@ -72,7 +77,7 @@ namespace coup
         size_t player_at = (size_t)(this->_turn % (int)this->players_obj_list.size());
         while (true)
         {
-            if (this->players_obj_list.at(player_at)->get_life() == true)
+            if (this->players_obj_list.at(player_at)->get_life())
             {
 
                 return this->players_obj_list.at(player_at)->get_name();
@@ -98,7 +103,7 @@ namespace coup
     string Game::winner()
     {
         this->players_list = players();
-        if (this->game_on == false)
+        if (!this->game_on)
         {
             throw "Game Hasn't Started Yet!";
         }
@@ -106,10 +111,7 @@ namespace coup
         {
             throw "Game Didn't Finish Yet!";
         }
-        else
-        {
             return this->players_list.at(0);
-        }
     }
 
 }

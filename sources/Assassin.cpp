@@ -13,21 +13,21 @@ namespace coup
         {
             throw "Not Enough Coins For Coup!";
         }
-        if (target.is_alive == false)
+        if (!target.is_alive)
         {
             throw "Target Is Already Dead!";
         }
         if (this->coins() >= COUP_COINS)
         {
             Player::coup(target);
-            return 1;
+            return true;
         }
         this->coins_num -= A_COUP_COST;
-        this->game->remove_player(&target);
+        target.is_alive=false;
         this->get_action().clear();
         this->last_action.push_back("specialcoup");
         this->last_action.push_back(to_string(target.get_id()));
         this->game->_turn++;
-        return 1;
+        return true;
     }
 }

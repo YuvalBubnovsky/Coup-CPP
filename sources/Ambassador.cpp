@@ -9,16 +9,15 @@ namespace coup
         {
             throw "This is not your turn!";
         }
-        if (src.get_life() == false || dest.get_life() == false)
+        if (!src.get_life() || !dest.get_life())
         {
             throw "One Or More Players Requested Are Dead!";
         }
-        if (this->game->game_on == false)
+        if (!this->game->game_on)
         {
             this->game->game_on = true;
         }
         int src_coins = src.coins();
-        int dest_coins = dest.coins();
         if (src_coins == 0)
         {
             throw "Player Has No Coins To Transfer From!";
@@ -28,7 +27,7 @@ namespace coup
         this->last_action.clear();
         this->last_action.push_back("transfer");
         this->game->_turn++;
-        return 1;
+        return true;
     }
     bool Ambassador::block(Player &player)
     {
@@ -36,7 +35,6 @@ namespace coup
         {
             throw "Illegal Block!";
         }
-        int player_coins1 = player.coins();
         player.coins_num-=2;
         int player_coins2 = player.coins();
         if (player_coins2 < 0)
@@ -47,6 +45,6 @@ namespace coup
         this->last_action.clear();
         this->game->_turn++;
 
-        return 1;
+        return true;
     }
 }

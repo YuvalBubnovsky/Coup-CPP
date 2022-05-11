@@ -27,11 +27,12 @@ namespace coup
         vector<string> players();
         string winner();
         bool add_player(Player *player);
-        bool remove_player(Player *player);
+        //static bool remove_player(Player *player);
+       // static bool revive_player(Player *player);
         Player* get_player(size_t _id);
         bool set_sequence(int num);
         bool set_player_count(int _count);
-        int get_player_count();
-        int get_sequence();
+        int get_player_count() const;
+        int get_sequence() const;
     };
 }

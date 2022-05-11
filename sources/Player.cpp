@@ -10,38 +10,41 @@ namespace coup
         {
             throw "Can't Join, Game Already Started!";
         }
-        if (game->get_player_count() == MAX_PLAYERS)
+        if (game->players().size() == MAX_PLAYERS)
         {
             throw "Can't Join, Max Players Reached!";
         }
         this->name = move(name);
         this->_role = move(role);
         this->game = game;
-        this->set_coins(0);
-        this->set_life(true);
+        //this->set_coins(0);
+        this->coins_num=0;
+        this->is_alive=true;
+       // this->set_life(true);
         this->game->add_player(this);
-        set_id(static_cast<size_t>(this->game->get_sequence()));
+       // set_id(static_cast<size_t>(this->game->get_sequence()));
+        this->id=static_cast<size_t>(this->game->get_sequence());
     }
 
     Player::~Player() {}
 
-    string Player::role()
+    string Player::role() const
     {
         return this->_role;
     }
     bool Player::set_coins(int coins)
     {
         this->coins_num = coins;
-        return 1;
+        return true;
     }
 
     bool Player::set_life(bool status)
     {
         this->is_alive = status;
-        return 1;
+        return true;
     }
 
-    bool Player::get_life()
+    bool Player::get_life() const
     {
         return this->is_alive;
     }
@@ -54,10 +57,10 @@ namespace coup
     bool Player::set_id(size_t id)
     {
         this->id = id;
-        return 1;
+        return true;
     }
 
-    int Player::get_id()
+    int Player::get_id() const
     {
         return this->id;
     }
@@ -72,11 +75,11 @@ namespace coup
         {
             throw "This is not your turn!";
         }
-        if (this->game->game_on == false && this->game->player_count == 1)
+        if (!this->game->game_on && this->game->player_count == 1)
         {
             throw "One Player Left";
         }
-        if (this->game->game_on == false)
+        if (!this->game->game_on)
         {
             this->game->game_on = true;
         }
@@ -84,7 +87,7 @@ namespace coup
         this->get_action().clear();
         this->get_action().push_back("income");
         this->game->_turn++;
-        return 1;
+        return true;
     }
     bool Player::foreign_aid()
     {
@@ -96,28 +99,20 @@ namespace coup
         {
             throw "This is not your turn!";
         }
-        if (this->game->game_on == false && this->game->player_count == 1)
+        if (!this->game->game_on && this->game->player_count == 1)
         {
             throw "One Player Left";
         }
-        if (this->game->game_on == false)
+        if (!this->game->game_on)
         {
             this->game->game_on = true;
-        }
-        int new_coins = this->coins();
-        if (new_coins == 9)
-        {
-            this->coins_num = 10;
-            this->get_action().clear();
-            this->get_action().push_back("foreign aid");
-            return 1;
         }
         this->coins_num += 2;
         this->get_action().clear();
         this->get_action().push_back("foreign aid");
         this->game->_turn++;
 
-        return 1;
+        return true;
     }
     bool Player::coup(Player &target)
     {
@@ -129,23 +124,23 @@ namespace coup
         {
             throw "Not Enough Coins For Coup!";
         }
-        if (target.get_life() == false)
+        if (!target.get_life())
         {
             throw "Target Is Already Dead!";
         }
         this->coins_num -= COUP_COINS;
-        this->game->remove_player(&target);
+        target.is_alive=false;
         this->get_action().push_back("coup");
         this->get_action().push_back(to_string(this->get_id())); // TODO: is this needed?
         this->game->_turn++;
-        return 1;
+        return true;
     }
-    int Player::coins()
+    int Player::coins() const
     {
         return this->coins_num;
     }
 
-    vector<string> Player::get_action()
+    vector<string> Player::get_action() const
     {
         return this->last_action;
     }

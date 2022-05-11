@@ -9,6 +9,7 @@ using std::vector;
 
 #define MAX_PLAYERS 6
 #define MAX_COINS 10
+#define ALMOST_MAX_COINS 9
 #define COUP_COINS 7
 
 namespace coup
@@ -31,14 +32,14 @@ namespace coup
         bool income();
         bool foreign_aid();
         virtual bool coup(Player &target);
-        string role();
-        int coins();
+        string role() const;
+        int coins() const;
         bool set_coins(int coins);
         bool set_life(bool status);
-        bool get_life();
+        bool get_life() const;
         string get_name();
         bool set_id(size_t id);
-        int get_id();
-        vector<string> get_action();
+        int get_id() const ;
+        vector<string> get_action() const;
     };
 }

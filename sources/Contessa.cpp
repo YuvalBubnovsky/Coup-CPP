@@ -14,10 +14,9 @@ namespace coup
             string target_string = player.get_action().at(1);
             int target_id = stoi(target_string);
             Player *target = this->game->get_player((size_t)target_id);
-            target->is_alive = true;
-            //this->game->players();
-            return 1;
+            target->is_alive=true;
+            // this->game->players();
         }
-        return 0;
+        return true;
     }
 }
