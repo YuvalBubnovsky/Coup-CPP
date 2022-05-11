@@ -5,13 +5,13 @@ namespace coup
 {
     bool Contessa::block(Player &player)
     {
-        if (player.role() != "Assassin" || player.get_action().at(0) != "specialcoup")
+        if (player.role() != "Assassin" || player.last_action.at(0) != "specialcoup")
         {
             throw logic_error("Illegal Block!");
         }
-        if (player.get_action().at(0) == "specialcoup")
+        if (player.last_action.at(0) == "specialcoup")
         { // We can only block special assasin coup
-            string target_string = player.get_action().at(1);
+            string target_string = player.last_action.at(1);
             int target_id = stoi(target_string);
             Player *target = this->game->get_player((size_t)target_id);
             target->is_alive=true;

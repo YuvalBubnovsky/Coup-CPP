@@ -24,7 +24,7 @@ namespace coup
         }
         this->coins_num -= A_COUP_COST;
         target.is_alive=false;
-        this->get_action().clear();
+        this->last_action.clear();
         this->last_action.push_back("specialcoup");
         this->last_action.push_back(to_string(target.get_id()));
         this->game->_turn++;

@@ -21,8 +21,7 @@ namespace coup
         this->players_list.push_back(player->get_name());
         this->players_obj_list.push_back(player);
         this->set_player_count(players_list.size());
-        int num = this->get_sequence();
-        this->set_sequence(num++);
+        this->sequence++;
         return true;
     }
 
